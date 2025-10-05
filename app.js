@@ -12,10 +12,10 @@ function generateRandomNumber() {
   }
 }
 
-function exibirTextoNaTela(tag, texto) {
-  let campo = document.querySelector(tag);
-  campo.innerHTML = texto;
-  responsiveVoice.speak(texto, 'US English Male');
+function showScreenText(tag, text) {
+  let field = document.querySelector(tag);
+  field.innerHTML = text;
+  responsiveVoice.speak(text, 'US English Male');
 }
 
 function clearInput() {
@@ -24,8 +24,8 @@ function clearInput() {
 
 function showInitialMessage() {
   let message = `Choose a number between 1 and ${maxAttempts}`;
-  exibirTextoNaTela('h1', 'Secret number game');
-  exibirTextoNaTela('p', message);
+  showScreenText('h1', 'Secret number game');
+  showScreenText('p', message);
 }
 
 function restartGame() {
@@ -36,19 +36,19 @@ function restartGame() {
   document.getElementById('reiniciar').setAttribute('disabled', true);
 }
 
-function verificarChute() {
+function checkGuess() {
   let guess = document.querySelector('input').value;
   if (guess == secretNumber) {
     let attemptsText = attempts === 1 ? 'attempt' : 'attempts';
     let attemptsMessage = `You've guessed the number in ${attempts} ${attemptsText}!`;
-    exibirTextoNaTela('h1', 'You got it! 🎉');
-    exibirTextoNaTela('p', attemptsMessage);
+    showScreenText('h1', 'You got it! 🎉');
+    showScreenText('p', attemptsMessage);
     document.getElementById('reiniciar').removeAttribute('disabled');
   } else {
     if (guess < secretNumber) {
-      exibirTextoNaTela('p', 'Try a higher number! ⬆️');
+      showScreenText('p', 'Try a higher number! ⬆️');
     } else {
-      exibirTextoNaTela('p', 'Try a lower number! ⬇️');
+      showScreenText('p', 'Try a lower number! ⬇️');
     }
     attempts++;
     clearInput();
